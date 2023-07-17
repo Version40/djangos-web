@@ -1,0 +1,124 @@
+{% extends 'index.html' %}
+{% load sass_tags %}
+{% load static %}
+
+{% block link %}
+    <link href="{% static 'carousel.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% sass_src 'main_page.scss' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+    Django's Pizza - піцца №1 в Києві
+{% endblock %}
+
+{% block content %}
+    <div class="main_block">
+        <div class="slider__container">
+            <div class="content">
+                {% for el in carousel %}
+                    <img class="slider-item" src="{{ el.images.url }}" alt="image">
+                {% endfor %}
+            </div>
+{#            <div class="slider__control">#}
+{#                <div class="slider__control-item prev"></div>#}
+{#                <div class="slider__control-item next"></div>#}
+{#            </div>#}
+            <div class="slider__dots"></div>
+        </div>
+        <div class="main_filter">
+            <div class="sort_block">
+                <a id="all_link" href="/"><p class="{% if not selected_category %}active_link{% endif %}">Всі</p></a>
+                <a id="meat_link" href="?category=М'ясні"><p class="{% if selected_category == "М'ясні" %}active_link{% endif %}">М'ясні</p></a>
+                <a id="vegetarian_link" href="?category=Вегетеріанські"><p class="{% if selected_category == 'Вегетеріанські' %}active_link{% endif %}">Вегетеріанські</p></a>
+                <a id="grill_link" href="?category=Гриль"><p class="{% if selected_category == 'Гриль' %}active_link{% endif %}">Гриль</p></a>
+                <a id="spicy_link" href="?category=Гострі"><p class="{% if selected_category == 'Гострі' %}active_link{% endif %}">Гострі</p></a>
+            </div>
+            <select id="sort_select" style="background: url('{% static 'down_arrow.svg' %}') no-repeat right;
+                    background-size: 20px 20px; background-position-x: calc(100% - 10px);">
+                <option>Сортувати</option>
+                <option value="asc" {% if sort == "asc" %}selected{% endif %}>Ціна низька-висока</option>
+                <option value="desc" {% if sort == "desc" %}selected{% endif %}>Ціна висока-низька</option>
+            </select>
+        </div>
+        <div class="product_block">
+            <h1 id="pizza">Піца</h1>
+            <div class="product_all_items" id="grid">
+                {% for el in pizzas %}
+                    <div class="product_items_block">
+                        <img src="{{ el.images.url }}" alt="image">
+                        <p class="product_weight">{{ el.weight }} г</p>
+                        <p class="product_name">{{ el.pizza_name }}</p>
+                        <span>{{ el.compaund }}</span>
+                        <div class="product_price_block">
+                            <p>{{ el.price }} грн.</p>
+                            <a href="{% url 'add_order_items' 'pizza' el.uid %}"><img src="../static/img/shop_car.svg" alt="shop_car"><span>В кошик</span></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product_block">
+            <h1 id="salads">Салати</h1>
+            <div class="product_all_items" id="grid">
+                {% for el in salad %}
+                    <div class="product_items_block">
+                        <img src="{{ el.images.url }}" alt="image">
+                        <p class="product_weight">{{ el.weight }} г</p>
+                        <p class="product_name">{{ el.salad_name }}</p>
+                        <span>{{ el.compaund }}</span>
+                        <div class="product_price_block">
+                            <p>{{ el.price }} грн.</p>
+                            <a href="{% url 'add_order_items' 'salad' el.uid %}"><img src="../static/img/shop_car.svg" alt="shop_car"><span>В кошик</span></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product_block">
+            <h1 id="drinks">Напої</h1>
+            <div class="product_all_items" id="grid">
+                {% for el in drink %}
+                    <div class="product_items_block">
+                        <img src="{{ el.images.url }}" alt="image">
+                        <p class="product_weight">{{ el.weight }} г</p>
+                        <p class="product_name">{{ el.drink_name }}</p>
+                        <div class="product_price_block">
+                            <p>{{ el.price }} грн.</p>
+                            <a href="{% url 'add_order_items' 'drink' el.uid %}"><img src="../static/img/shop_car.svg" alt="shop_car"><span>В кошик</span></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="about">
+            <h2>Все про піцерію Django’s Pizza</h2>
+            <p>Django’s Pizza — це ідеальне місце, де ви можете скуштувати піцу зі смачними
+                рецептами. Для гурманів та прихильників експериментів є окремі пропозиції з
+                блакитним сиром, лососем, шпинатом тощо. В меню піцерії ви можете обрати все,
+                що вам захочеться, для приємного вечора у компанії друзів чи свята з родиною.</p>
+            <h2>Найкращі смакові поєднання у піці</h2>
+            <p>В меню Domino’s Pizza знайдеться улюблена піца для кожного: класична «Гавайська»,
+                покращена «Маргарита» з подвійною порцією сира, екстравагантна «Тоскана» зі шпинатом,
+                нетипова «Біф & Чіпс» з картоплею тощо. Топ 5 інгредієнтів, які зроблять страву особливо
+                насиченою й поживною:</p>
+            <ul>
+                <li>М’ясні продукти — в меню представлено страви з куркою, яловичиною,
+                    шинкою, фрикадельками, баварськими ковбасками, пепероні тощо.</li>
+                <li>Сир — жодна піца не обходиться без моцарели, але якщо ви полюбляєте
+                    різні сорти, то для вас будуть гарним варіантом Філадельфія, пармезан, чедер, дорблю тощо.</li>
+                <li>Томати — вони використані у більшості рецептів, додають соковитості страві,
+                    можуть гарно поєднуватися з гострим соусом або вершковим.</li>
+                <li>Гриби — вони насичують страву кольором та додають їй поживної цінності,
+                    при цьому можуть і значно покращити страву.</li>
+                <li>Болгарський перець — солодкий і соковитий, він додає нових текстур піці
+                    й змінює кардинально її смак.</li>
+            </ul>
+            <p>Django’s Pizza для гурманів створила ще один сервіс — «Конструктор піци». Тут ви можете
+                скласти собі ідеальну піцу, вибравши на свій смак сир, м’ясну начинку, соус,
+                овочевий мікс у будь-яких порціях. Тож любителі м’яса можуть замовити собі подвійну
+                порцію курки, наприклад, або декілька видів різних сирів.</p>
+            <span>*Вага щойно приготовленого продукту з стандартним набором інгредієнтів. Вага у
+                замовленнях на доставку може відрізнятися через дегідратацію продукту.</span>
+        </div>
+    </div>
+{% endblock %}

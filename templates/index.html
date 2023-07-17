@@ -1,0 +1,225 @@
+{% load sass_tags %}
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% sass_src 'main.scss' %}" rel="stylesheet" type="text/css">
+    {% block link %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div class="header_block">
+            <div class="logo_block">
+                <img src="../static/img/marker.svg" alt="marker">
+                <div class="rating">
+                    <img src="../static/img/rating-star.png" alt="star">
+                    <span>5.0</span>
+                </div>
+                <div class="city_block">
+                    <p class="city">Київ</p>
+                </div>
+                <div class="logo_text_block">
+                    <div class="number_phone">
+                        <i class="fa-solid fa-phone phone"></i>
+                        <p>0443521234</p>
+                    </div>
+                    <span>Пн - Нд з 9:00 до 22:00</span>
+                </div>
+            </div>
+            <div class="header_link_block">
+                <p>Популярне</p>
+                <p>Django's Club</p>
+                <p>Доставка і оплата</p>
+                <p>Відгуки</p>
+                <p>Франшиза</p>
+            </div>
+            <div class="button_block">
+                {% if not user.is_authenticated %}
+                    <div class="language_not_auth">
+                        <p>Укр</p>
+                        <p>Eng</p>
+                    </div>
+                {% else %}
+                    <div class="language">
+                        <p>Укр</p>
+                        <p>Eng</p>
+                    </div>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                    <button type="button" onclick="OpenAuth()">Увійти</button>
+                {% else %}
+                    <div id="user_menu_block" class="user_menu_block">
+                        <div class="visible_user_menu">
+                            <i class="fa-regular fa-user"></i>
+                            <p class="user_name">{{ request.user.username }}</p>
+                        </div>
+                        <div id="hidden_user_menu" class="hidden_user_menu">
+                            <div class="hidden_user_menu_block">
+                                <p>Особисті дані</p>
+                                <p>Історія замовлень</p>
+                                <p>Нараховані бонуси</p>
+                                <p>Мої страви</p>
+                                <p>Зміна паролю</p>
+                                <a href="{% url 'exit' %}"><span>Вихід</span></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div id="auth_main_block" class="auth_main_block">
+            <div class="auth_block">
+                <h1>Вхід</h1>
+                <img id="cancel_button" src="../static/img/cansel.svg" alt="cancel">
+                <form id="loginForm" method="post">
+                    {% csrf_token %}
+                    {{ form_login.as_p }}
+                    <button type="submit" name="login" value="login">увійти в кабінет</button>
+                    {% if form_login.non_field_errors %}
+                        <div class="form-errors">
+                              {% for error in form_login.non_field_errors %}
+                                <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
+                    {% endif %}
+                </form>
+                <div class="register_buttons">
+                    <p>Забули пароль?</p>
+                    <p id="register_link">Зареєструватися</p>
+                </div>
+            </div>
+        </div>
+        <div id="reg_main_block" class="reg_main_block">
+            <div class="reg_block">
+                <h1>Зареєструватися</h1>
+                {% if form_register.non_field_errors %}
+                    <div class="form-errors-reg">
+                        {% for error in form_register.non_field_errors %}
+                            <p class="form-error-reg">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <img id="cancel_reg_button" src="../static/img/cansel.svg" alt="cancel">
+                <form id="registerForm" class="form_register" method="post">
+                    {% csrf_token %}
+                    {{ form_register.as_p }}
+                    <button class="reg_button" type="submit" name="register" value="register">Зареєструватись</button>
+                </form>
+                <p>Вже зареєстровані?<button type="button" onclick="OpenAuth()">Увійти</button></p>
+            </div>
+        </div>
+        {% if messages %}
+            <div id="message_order" class="message_order">
+                <div class="message_order_text">
+                    {% for message in messages %}
+                        <p>{{ message|safe }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </header>
+    <div id="main_header" class="main_header">
+        <div class="main_header_block">
+            <div class="main_logo_block">
+                <a href="/"><img class="logo" src="../static/img/logo.png" alt="logo"></a>
+            </div>
+            <div class="search_block">
+                <a href="/" data-scroll-to="pizza"><p>Піца</p></a>
+                <a href="/" data-scroll-to="salads"><p>Салати</p></a>
+                <a href="/" data-scroll-to="drinks"><p>Напої</p></a>
+                <p>Суші</p>
+                <p>Сети</p>
+                <p>Інше</p>
+                <p>Акції</p>
+{#                <input class="search" type="text" placeholder="Пошук піцци...">#}
+{#                <img class="search_icon" src="../static/img/search.svg" alt="search">#}
+{#                <img class="cancel" src="../static/img/close.svg" alt="cancel">#}
+            </div>
+            <div class="main_header_order">
+                <a class="order_block" href="{% url 'order' %}">
+                    <p>{{ order_total_price }} грн.</p>
+                    <p class="line">|</p>
+                    <p><img src="../static/img/shop_car.svg" alt="shop_car">{{ order_item_count }}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer_block">
+            <div class="footer_text">
+                <img class="footer_logo" src="../static/img/footer_logo.png" alt="logo">
+                <p>© 2002 - 2023 Django's pizza</p>
+                <span>Усі права захищені.</span>
+            </div>
+            <div class="list_block">
+                <div class="app_logo_block">
+                    <p class="main_theme">Завантажити додаток</p>
+                    <img class="app_logo" src="../static/img/google_play.svg" alt="app_logo">
+                    <img class="app_logo" src="../static/img/app_store.svg" alt="app_logo">
+                </div>
+                <div class="double_block">
+                    <ul>
+                        <li>Ресторани</li>
+                    </ul>
+                    <div class="payment_block">
+                        <p class="main_theme">Підтримка платежів</p>
+                        <div class="payment_logo_block">
+                            <img class="payment_logo" src="../static/img/visa.svg" alt="payment_logo">
+                            <img class="payment_logo_master" src="../static/img/mastercard.svg" alt="payment_logo">
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li class="main_theme">Сервіси</li>
+                    <li>Бонусна програма</li>
+                    <li>Організація свята</li>
+                    <li>Бізнес ланчі</li>
+                    <li>Франчайзинг</li>
+                </ul>
+                <ul>
+                    <li class="main_theme">Корисна інформація</li>
+                    <li>Новини</li>
+                    <li>Вакансії</li>
+                    <li>Про компанію</li>
+                    <li>Договір публічної оферти</li>
+                    <li>Політика конфеденційності</li>
+                </ul>
+            </div>
+            <div class="footer_right_block">
+                <ul>
+                    <li class="active">0443521234</li>
+                    <li>Без вихідних з 9:00 до 22:00</li>
+                    <li class="active">Info@djangos.ua</li>
+                    <li><button type="submit">Залишити відгук</button></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="web_icon">
+            <i class="fa-brands fa-telegram"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook"></i>
+        </div>
+    </footer>
+    <script src={% static 'js/throttle.js' %}></script>
+    <script src={% static 'js/slider.js' %}></script>
+    <script>
+        new Slider(0, { autoPlay: true, fade: true })
+    </script>
+    <script src={% static 'js/auth.js' %}></script>
+    <script src={% static 'js/code.js' %}></script>
+</body>
+</html>

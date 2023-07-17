@@ -1,0 +1,140 @@
+.main_order_block {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px; }
+  .main_order_block .container_block {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between; }
+  .main_order_block .main_order {
+    display: flex;
+    flex-direction: column; }
+    .main_order_block .main_order .pointer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      height: 60px;
+      background: #f8f8f8;
+      border: 0 solid grey;
+      border-radius: 30px; }
+      .main_order_block .main_order .pointer h1 {
+        margin-left: 20px; }
+    .main_order_block .main_order .form_contact_block {
+      margin-left: 20px; }
+      .main_order_block .main_order .form_contact_block p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; }
+        .main_order_block .main_order .form_contact_block p label {
+          margin-bottom: 10px;
+          font-size: 18px; }
+        .main_order_block .main_order .form_contact_block p input {
+          outline: none;
+          border: 1px solid grey;
+          border-radius: 16px;
+          font-size: 16px;
+          padding: 0 20px; }
+      .main_order_block .main_order .form_contact_block .form_contact {
+        width: 500px;
+        height: 60px; }
+    .main_order_block .main_order .order_items {
+      width: 700px; }
+    .main_order_block .main_order .client_orders {
+      display: flex;
+      flex-direction: column; }
+    .main_order_block .main_order .client_order {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid grey;
+      height: 150px; }
+      .main_order_block .main_order .client_order img {
+        width: 150px;
+        height: 150px; }
+      .main_order_block .main_order .client_order i {
+        font-size: 20px;
+        color: #252525;
+        cursor: pointer;
+        transition: all .5s ease; }
+        .main_order_block .main_order .client_order i:hover {
+          color: darkred; }
+      .main_order_block .main_order .client_order .order_items_desc {
+        display: flex;
+        position: absolute; }
+        .main_order_block .main_order .client_order .order_items_desc .order_item_desc {
+          display: flex;
+          flex-direction: column;
+          margin-left: 15px;
+          justify-content: center;
+          align-items: center;
+          width: 160px;
+          position: relative;
+          top: 0;
+          left: 0; }
+          .main_order_block .main_order .client_order .order_items_desc .order_item_desc p {
+            font-size: 18px;
+            margin-bottom: 10px; }
+      .main_order_block .main_order .client_order .price {
+        position: relative;
+        top: 0;
+        left: 160px;
+        font-size: 18px; }
+      .main_order_block .main_order .client_order .price_drink {
+        position: relative;
+        top: 0;
+        left: 588px;
+        font-size: 18px; }
+      .main_order_block .main_order .client_order .order_compaund {
+        display: flex;
+        align-items: center;
+        width: 230px;
+        height: 150px;
+        position: relative;
+        top: 0;
+        left: 340px; }
+    .main_order_block .main_order .order_button_block {
+      display: flex;
+      justify-content: space-between;
+      margin: 100px 0 100px 0; }
+      .main_order_block .main_order .order_button_block a {
+        text-decoration: none;
+        display: flex;
+        align-items: end; }
+      .main_order_block .main_order .order_button_block .button_back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 60px;
+        background: #e3e3e3;
+        font-size: 18px;
+        border: 0 solid grey;
+        border-radius: 32px;
+        cursor: pointer;
+        color: black;
+        transition: all .5s ease; }
+        .main_order_block .main_order .order_button_block .button_back:hover {
+          background: #888888; }
+      .main_order_block .main_order .order_button_block .order_comp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 60px;
+        background: #fe0021;
+        font-size: 18px;
+        border: 0 solid grey;
+        border-radius: 32px;
+        cursor: pointer;
+        color: white;
+        margin-top: 20px;
+        transition: all .5s ease; }
+        .main_order_block .main_order .order_button_block .order_comp:hover {
+          background: darkred; }
+      .main_order_block .main_order .order_button_block .sum {
+        font-size: 24px; }
+        .main_order_block .main_order .order_button_block .sum span {
+          font-size: 36px;
+          color: red; }
+
+/*# sourceMappingURL=order.css.map */

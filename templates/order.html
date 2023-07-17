@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load sass_tags %}
+{% load static %}
+
+{% block link %}
+    <link href="{% sass_src 'order.scss' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+    Django's Pizza
+{% endblock %}
+
+{% block content %}
+    <div class="main_order_block">
+        <div class="main_order">
+            <div class="container_block">
+                <div class="contact">
+                    <div class="pointer"><h1>Контактні дані</h1></div>
+                    <form class="form_contact_block" method="POST" action="{% url 'order' %}">
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                    </form>
+                </div>
+                <div class="order_items">
+                    <div class="pointer"><h1>Ваше замовлення</h1></div>
+                    <div class="client_orders">
+                        {% for el in order.order_items.all %}
+                            {% if el.pizza %}
+                                <div class="client_order">
+                                    <div class="order_items_desc">
+                                        <img src="{{ el.pizza.images.url }}" alt="item">
+                                        <div class="order_item_desc">
+                                            <p>{{ el.pizza.pizza_name }}</p>
+                                            <span>{{ el.pizza.weight }} г</span>
+                                        </div>
+                                    </div>
+                                    <p class="order_compaund">{{ el.pizza.compaund }}</p>
+                                    <span class="price">{{ el.pizza.price }} грн</span>
+                                    <a href="{% url 'remove_order_items' 'pizza' el.pizza.uid %}"><i class="fa-regular fa-trash-can"></i></a>
+                                </div>
+                            {% elif el.salad %}
+                                <div class="client_order">
+                                    <div class="order_items_desc">
+                                        <img src="{{ el.salad.images.url }}" alt="item">
+                                        <div class="order_item_desc">
+                                            <p>{{ el.salad.salad_name }}</p>
+                                            <span>{{ el.salad.weight }} г</span>
+                                        </div>
+                                    </div>
+                                    <p class="order_compaund">{{ el.salad.compaund }}</p>
+                                    <span class="price">{{ el.salad.price }} грн</span>
+                                    <a href="{% url 'remove_order_items' 'salad' el.salad.uid %}"><i class="fa-regular fa-trash-can"></i></a>
+                                </div>
+                            {% elif el.drink %}
+                                <div class="client_order">
+                                    <div class="order_items_desc">
+                                        <img src="{{ el.drink.images.url }}" alt="item">
+                                        <div class="order_item_desc">
+                                            <p>{{ el.drink.drink_name }}</p>
+                                            <span>{{ el.drink.weight }} г</span>
+                                        </div>
+                                    </div>
+                                    <span class="price_drink">{{ el.drink.price }} грн</span>
+                                    <a href="{% url 'remove_order_items' 'drink' el.drink.uid %}"><i class="fa-regular fa-trash-can"></i></a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="order_button_block">
+                <a href="{% url 'home' %}"><p class="button_back">Повернутися до меню</p></a>
+                <div class="button_pay_block">
+                    <p class="sum">Cума до сплати: <span>{{ order.total_price }} грн</span></p>
+                    <a href="{% url 'success' %}"><p class="order_comp">Оформити замовлення</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

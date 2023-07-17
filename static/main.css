@@ -1,0 +1,578 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+header {
+  background: #222222;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1; }
+  header .header_block {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between; }
+  header .errorlist {
+    opacity: 0;
+    visibility: hidden; }
+  header .logo_block {
+    display: flex;
+    align-items: center; }
+    header .logo_block .rating {
+      display: flex;
+      align-items: center;
+      margin: 0 20px 0 10px;
+      border: 0 solid white;
+      border-radius: 10px;
+      padding: 5px 10px 5px 20px;
+      color: white;
+      background: green;
+      position: relative; }
+      header .logo_block .rating img {
+        position: absolute;
+        top: 9px;
+        left: 8px; }
+    header .logo_block .city_block {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 18px; }
+      header .logo_block .city_block .city {
+        cursor: pointer;
+        transition: all .5s ease; }
+      header .logo_block .city_block .city:hover {
+        color: grey; }
+    header .logo_block .logo_text_block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column; }
+      header .logo_block .logo_text_block span {
+        margin-left: 30px;
+        color: grey; }
+      header .logo_block .logo_text_block .number_phone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 21px;
+        margin-bottom: 5px; }
+        header .logo_block .logo_text_block .number_phone:hover p, header .logo_block .logo_text_block .number_phone:hover i {
+          color: grey; }
+        header .logo_block .logo_text_block .number_phone p {
+          color: white;
+          font-size: 18px;
+          cursor: pointer;
+          transition: color .5s ease; }
+          header .logo_block .logo_text_block .number_phone p:hover {
+            color: grey; }
+        header .logo_block .logo_text_block .number_phone i {
+          font-size: 20px;
+          margin-right: 5px;
+          cursor: pointer;
+          color: white;
+          transition: color .5s ease; }
+          header .logo_block .logo_text_block .number_phone i:hover {
+            color: grey; }
+  header .header_link_block {
+    display: flex;
+    align-items: center; }
+    header .header_link_block p {
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all .5s ease; }
+      header .header_link_block p:hover {
+        color: grey; }
+    header .header_link_block p:not(:last-child) {
+      margin-right: 40px; }
+  header .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    header .button_block .language_not_auth {
+      display: flex;
+      align-items: center;
+      color: white;
+      margin-right: 20px; }
+      header .button_block .language_not_auth p:last-child {
+        margin: 0 20px 0 10px;
+        color: grey; }
+      header .button_block .language_not_auth p {
+        font-size: 16px;
+        cursor: pointer;
+        transition: all .5s ease; }
+        header .button_block .language_not_auth p:hover {
+          color: white; }
+    header .button_block .language {
+      display: flex;
+      align-items: center;
+      color: white;
+      margin-right: 150px; }
+      header .button_block .language p:last-child {
+        margin: 0 20px 0 10px;
+        color: grey; }
+      header .button_block .language p {
+        font-size: 16px;
+        cursor: pointer;
+        transition: all .5s ease; }
+        header .button_block .language p:hover {
+          color: white; }
+    header .button_block button {
+      width: 130px;
+      height: 50px;
+      border: 0 solid grey;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.16);
+      cursor: pointer;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all .5s ease; }
+      header .button_block button:hover {
+        background: #5f5f5f; }
+    header .button_block .user_menu_block {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      height: 85px;
+      width: auto;
+      transition: all .4s ease; }
+      header .button_block .user_menu_block .visible_user_menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border-bottom: 1px solid white;
+        cursor: pointer;
+        transition: all .5s ease; }
+        header .button_block .user_menu_block .visible_user_menu:hover {
+          color: darkred;
+          border-bottom: 1px solid darkred; }
+      header .button_block .user_menu_block i {
+        font-size: 18px;
+        margin-right: 5px; }
+      header .button_block .user_menu_block .user_name {
+        font-size: 18px; }
+      header .button_block .user_menu_block .hidden_user_menu {
+        position: absolute;
+        top: 85px;
+        z-index: 999;
+        background: #222222;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        color: white;
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        border-bottom: 1px solid grey;
+        border-radius: 0 0 10px 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .4s ease; }
+        header .button_block .user_menu_block .hidden_user_menu .hidden_user_menu_block p {
+          margin-bottom: 10px;
+          cursor: pointer;
+          transition: all .5s ease; }
+          header .button_block .user_menu_block .hidden_user_menu .hidden_user_menu_block p:hover {
+            color: darkred; }
+        header .button_block .user_menu_block .hidden_user_menu .hidden_user_menu_block a {
+          display: flex;
+          width: 120px;
+          text-decoration: none;
+          border-top: 1px solid rgba(255, 255, 255, 0.15); }
+          header .button_block .user_menu_block .hidden_user_menu .hidden_user_menu_block a span {
+            margin: 20px 0;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all .5s ease; }
+            header .button_block .user_menu_block .hidden_user_menu .hidden_user_menu_block a span:hover {
+              color: darkred; }
+  header .form-error {
+    color: darkred;
+    margin-top: 10px; }
+  header .form-error-reg {
+    color: darkred;
+    margin-top: 30px; }
+  header .auth_main_block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s ease; }
+    header .auth_main_block .auth_block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      width: 500px;
+      background: white;
+      position: absolute;
+      top: 240px;
+      border: 1px solid grey;
+      border-radius: 50px; }
+      header .auth_main_block .auth_block img {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        height: 20px;
+        width: 20px;
+        cursor: pointer; }
+      header .auth_main_block .auth_block h1 {
+        margin-bottom: 15px; }
+      header .auth_main_block .auth_block form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center; }
+      header .auth_main_block .auth_block .form_auth {
+        width: 350px;
+        height: 50px;
+        padding: 5px 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        margin-bottom: 10px; }
+      header .auth_main_block .auth_block button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        height: 50px;
+        width: 200px;
+        border: 0 solid grey;
+        border-radius: 20px;
+        background: #5f5f5f;
+        cursor: pointer;
+        color: white;
+        transition: all .5s ease; }
+        header .auth_main_block .auth_block button:hover {
+          background: grey; }
+      header .auth_main_block .auth_block .register_buttons {
+        margin-top: 30px;
+        width: 350px;
+        display: flex;
+        justify-content: space-between; }
+        header .auth_main_block .auth_block .register_buttons p {
+          cursor: pointer;
+          font-size: 18px;
+          transition: all .5s ease; }
+          header .auth_main_block .auth_block .register_buttons p:hover {
+            color: darkred; }
+  header .reg_main_block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s ease; }
+    header .reg_main_block .reg_block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 580px;
+      width: 500px;
+      background: white;
+      position: absolute;
+      top: 240px;
+      border: 1px solid grey;
+      border-radius: 50px; }
+      header .reg_main_block .reg_block img {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        height: 20px;
+        width: 20px;
+        cursor: pointer; }
+      header .reg_main_block .reg_block h1 {
+        margin-bottom: 10px; }
+      header .reg_main_block .reg_block form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center; }
+      header .reg_main_block .reg_block .form_register {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; }
+        header .reg_main_block .reg_block .form_register #id_first_name {
+          margin-right: 10px; }
+        header .reg_main_block .reg_block .form_register #id_password {
+          margin-right: 10px; }
+      header .reg_main_block .reg_block .form_reg {
+        width: 392px;
+        height: 50px;
+        padding: 5px 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        margin-bottom: 10px; }
+      header .reg_main_block .reg_block .form_reg_flex {
+        display: flex;
+        width: 180px;
+        height: 50px;
+        padding: 5px 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        margin-bottom: 10px; }
+      header .reg_main_block .reg_block .reg_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        height: 50px;
+        width: 200px;
+        border: 0 solid grey;
+        border-radius: 20px;
+        background: #5f5f5f;
+        cursor: pointer;
+        color: white;
+        transition: all .5s ease; }
+        header .reg_main_block .reg_block .reg_button:hover {
+          background: grey; }
+      header .reg_main_block .reg_block p {
+        margin-top: 15px;
+        font-size: 18px; }
+        header .reg_main_block .reg_block p button {
+          margin-left: 10px;
+          outline: none;
+          border: 0;
+          background: white;
+          font-size: 16px;
+          cursor: pointer; }
+          header .reg_main_block .reg_block p button:hover {
+            color: darkred; }
+  header .message_order {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s ease; }
+    header .message_order .message_order_text {
+      width: 400px;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      border: 0 solid grey;
+      border-radius: 32px; }
+      header .message_order .message_order_text p {
+        width: 400px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 22px;
+        color: red; }
+
+.main_header {
+  display: flex;
+  justify-content: center;
+  height: 90px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 0; }
+  .main_header .main_header_block {
+    display: flex;
+    justify-content: space-between;
+    width: 1400px; }
+    .main_header .main_header_block .main_logo_block {
+      display: flex;
+      align-items: center; }
+      .main_header .main_header_block .main_logo_block .logo {
+        height: 75px;
+        width: 150px; }
+    .main_header .main_header_block .search_block {
+      position: relative;
+      display: flex;
+      align-items: center; }
+      .main_header .main_header_block .search_block a {
+        text-decoration: none; }
+      .main_header .main_header_block .search_block p {
+        color: black;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 50px;
+        transition: all .5s ease; }
+        .main_header .main_header_block .search_block p:hover {
+          font-size: 24px; }
+    .main_header .main_header_block .main_header_order {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .main_header .main_header_block .order_block {
+      display: flex;
+      margin-right: 20px;
+      height: 50px;
+      text-decoration: none;
+      background: #fe0021;
+      border: 0 solid black;
+      border-radius: 32px;
+      cursor: pointer;
+      transition: all .5s ease; }
+      .main_header .main_header_block .order_block:hover {
+        background: #da0420; }
+      .main_header .main_header_block .order_block img {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px; }
+      .main_header .main_header_block .order_block p {
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white; }
+      .main_header .main_header_block .order_block .line {
+        width: 10px;
+        border-radius: 0;
+        font-size: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        color: black; }
+
+footer {
+  height: 280px;
+  background: #222222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white; }
+  footer .footer_block {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  footer .footer_text {
+    height: 190px; }
+    footer .footer_text .footer_logo {
+      height: 40px;
+      width: 200px;
+      margin-bottom: 20px; }
+    footer .footer_text p {
+      margin-bottom: 5px; }
+  footer .list_block {
+    height: 190px;
+    display: flex; }
+    footer .list_block .app_logo_block {
+      margin-right: 50px;
+      width: 200px; }
+      footer .list_block .app_logo_block .app_logo {
+        height: 80px;
+        width: 200px;
+        cursor: pointer; }
+    footer .list_block .double_block {
+      display: flex;
+      flex-direction: column;
+      margin-right: 50px; }
+      footer .list_block .double_block .payment_block {
+        margin-top: 70px; }
+        footer .list_block .double_block .payment_block .payment_logo_block {
+          display: flex;
+          height: 80px;
+          align-items: center; }
+          footer .list_block .double_block .payment_block .payment_logo_block .payment_logo {
+            width: 100px;
+            height: 80px; }
+          footer .list_block .double_block .payment_block .payment_logo_block .payment_logo_master {
+            width: 100px;
+            height: 50px; }
+    footer .list_block ul {
+      list-style-type: none; }
+    footer .list_block li {
+      cursor: pointer;
+      font-size: 18px; }
+      footer .list_block li:hover {
+        color: grey; }
+    footer .list_block ul:not(:last-child) {
+      margin-right: 50px; }
+    footer .list_block ul li:not(:last-child) {
+      margin-bottom: 10px; }
+    footer .list_block .main_theme {
+      cursor: auto;
+      font-size: 18px;
+      font-weight: bold; }
+      footer .list_block .main_theme:hover {
+        color: white; }
+  footer .footer_right_block {
+    height: 190px; }
+    footer .footer_right_block ul {
+      list-style-type: none; }
+    footer .footer_right_block ul li:not(:last-child) {
+      margin-bottom: 10px; }
+    footer .footer_right_block li {
+      font-size: 18px; }
+    footer .footer_right_block .active {
+      cursor: pointer; }
+      footer .footer_right_block .active:hover {
+        color: grey; }
+    footer .footer_right_block li:first-child {
+      font-size: 24px;
+      margin-bottom: 5px !important; }
+    footer .footer_right_block button {
+      height: 35px;
+      width: 165px;
+      border: 0 solid grey;
+      border-radius: 25px;
+      font-size: 18px;
+      color: white;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.16);
+      cursor: pointer;
+      transition: all .5s ease; }
+      footer .footer_right_block button:hover {
+        background: #5f5f5f; }
+  footer .web_icon {
+    height: 60px;
+    width: 100%;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15); }
+    footer .web_icon i {
+      color: white;
+      cursor: pointer; }
+    footer .web_icon i:not(:first-child),
+    footer .web_icon i:not(:last-child) {
+      margin: 0 10px 0 10px; }
+    footer .web_icon i:hover {
+      color: grey; }
+
+/*# sourceMappingURL=main.css.map */
